@@ -2,6 +2,7 @@ package geth
 
 import (
 	"github.com/ethereum/go-ethereum/ethclient"
+	"os"
 )
 
 type EVMClients struct {
@@ -18,7 +19,7 @@ func ConnectEVMClient() error {
 	client := GetClient()
 	var err error
 
-	client.EthClient, err = ethclient.Dial("https://mainnet.infura.io/v3/3630895f60c94b159c58e16c0680b93a")
+	client.EthClient, err = ethclient.Dial(os.Getenv("RPC"))
 	if err != nil {
 		return err
 	}
