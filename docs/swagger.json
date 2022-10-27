@@ -1,0 +1,108 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/lastPrice/{token}": {
+            "get": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Get Latest Price",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "token",
+                        "name": "token",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/lastPrice/{token}/{timestamp}": {
+            "get": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Get Latest Price by timestamp",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "token",
+                        "name": "token",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "timestamp",
+                        "name": "timestamp",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/rangePrice": {
+            "post": {
+                "description": "Get average price for the time range. If not exist will add into database for cache",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Get average price for the time range with specific token",
+                "parameters": [
+                    {
+                        "description": "Range Price",
+                        "name": "rangePrice",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/api.AverageRangePriceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.AverageRangePriceRequest": {
+            "type": "object",
+            "required": [
+                "from_time_stamp",
+                "to_time_stamp",
+                "token"
+            ],
+            "properties": {
+                "from_time_stamp": {
+                    "type": "integer"
+                },
+                "to_time_stamp": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

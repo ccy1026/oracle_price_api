@@ -14,6 +14,13 @@ import (
 	"time"
 )
 
+// @BasePath /
+
+// @Summary Get Latest Price
+// @Tags Price
+// @param  token path string true "token"
+// @Success 200
+// @Router /lastPrice/{token} [get]
 func GetLatestPrice(ctx *gin.Context) {
 	if ctx.Param("token") == "" {
 		ErrorResponse(ctx, http.StatusBadRequest, errors.New(utils.NullTokenError))
@@ -43,6 +50,14 @@ func GetLatestPrice(ctx *gin.Context) {
 	ctx.JSON(200, response)
 }
 
+// @BasePath /
+
+// @Summary Get Latest Price by timestamp
+// @Tags Price
+// @param  token path string true "token"
+// @param  timestamp path int true "timestamp"
+// @Success 200
+// @Router /lastPrice/{token}/{timestamp} [get]
 func GetLatestPriceByTimestamp(ctx *gin.Context) {
 	if ctx.Param("token") == "" || ctx.Param("timestamp") == "" {
 		ErrorResponse(ctx, http.StatusBadRequest, errors.New(utils.NullTokenTimestamp))
@@ -99,6 +114,14 @@ func GetLatestPriceByTimestamp(ctx *gin.Context) {
 	ctx.JSON(200, response)
 }
 
+// @BasePath /
+// @Summary Get average price for the time range with specific token
+// @Description Get average price for the time range. If not exist will add into database for cache
+// @Tags Price
+// @Success 200
+// @produce application/json
+// @Param rangePrice body api.AverageRangePriceRequest true "Range Price"
+// @Router /rangePrice [post]
 func GetAveragePriceFromRange(ctx *gin.Context) {
 	var lastPriceRequest = api.AverageRangePriceRequest{}
 	err := ctx.ShouldBindBodyWith(&lastPriceRequest, binding.JSON)

@@ -36,5 +36,5 @@ func main() {
 	}()
 	log.Println("Running")
 	r := routers.SetupRouter()
-	r.Run(":1234")
+	r.Run(":3000")
 }

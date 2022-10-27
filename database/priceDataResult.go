@@ -81,7 +81,3 @@ func (db *DBProcessor) InsertAPIDataToDB(pairID uint, priceModelData *models.Pri
 	return nil
 
 }
-
-func removeElementByIndex[T any](slice []T, index int) []T {
-	return append(slice[:index], slice[index+1:]...)
-}
