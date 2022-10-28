@@ -6,6 +6,7 @@ import (
 	"gorm.io/gorm/logger"
 	"oracle_price_api/models"
 	"oracle_price_api/utils/external"
+	"time"
 )
 
 type DBProcessor struct {
@@ -100,31 +101,31 @@ func (db *DBProcessor) InsertChainData() error {
 }
 
 func (db *DBProcessor) InsertPriceData() error {
-	ETHData, err := external.GetPriceRangeWithAPI("ETH", 1666850160, 1666856580)
+	ETHData, err := external.GetPriceRangeWithAPI("ETH", time.Now().Unix()-1800, time.Now().Unix())
 	err = db.InsertAPIDataToDB(1, ETHData, nil)
 	if err != nil {
 		return err
 	}
 
-	BTCData, err := external.GetPriceRangeWithAPI("BTC", 1666850160, 1666856580)
+	BTCData, err := external.GetPriceRangeWithAPI("BTC", time.Now().Unix()-1800, time.Now().Unix())
 	err = db.InsertAPIDataToDB(2, BTCData, nil)
 	if err != nil {
 		return err
 	}
 
-	MATICData, err := external.GetPriceRangeWithAPI("MATIC", 1666850160, 1666856580)
+	MATICData, err := external.GetPriceRangeWithAPI("MATIC", time.Now().Unix()-1800, time.Now().Unix())
 	err = db.InsertAPIDataToDB(3, MATICData, nil)
 	if err != nil {
 		return err
 	}
 
-	BNBData, err := external.GetPriceRangeWithAPI("BNB", 1666850160, 1666856580)
+	BNBData, err := external.GetPriceRangeWithAPI("BNB", time.Now().Unix()-1800, time.Now().Unix())
 	err = db.InsertAPIDataToDB(4, BNBData, nil)
 	if err != nil {
 		return err
 	}
 
-	LINKData, err := external.GetPriceRangeWithAPI("LINK", 1666850160, 1666856580)
+	LINKData, err := external.GetPriceRangeWithAPI("LINK", time.Now().Unix()-1800, time.Now().Unix())
 	err = db.InsertAPIDataToDB(5, LINKData, nil)
 	if err != nil {
 		return err

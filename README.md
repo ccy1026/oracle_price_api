@@ -1,6 +1,7 @@
 # oracle_price_api-
 
 
+
 ## Clone the project
 
 ```
@@ -44,6 +45,7 @@ The application will listen to 3000 port.
 
 
 ## API Endpoint
+External price API source only can provide 5000 minutes histroy.
 
 Support coin: ETH, BTC, MATIC, BNB, LINK
 ### Swagger
@@ -57,7 +59,7 @@ GET /lastPrice/ETH
 ```
 ### Get Last Price of ETH with specific timestamp
 ```
-GET /lastPrice/ETH/1666856160
+GET /lastPrice/ETH/1666856160 //eg:time now -1800
 ```
 
 ### Get token average price in a time range
@@ -65,8 +67,8 @@ GET /lastPrice/ETH/1666856160
 POST /rangePrice
  {
     "token": "ETH",
-    "from_time_stamp" : 1666850160,
-    "to_time_stamp" : 1666856580
+    "from_time_stamp" : 1666850160, // eg:Time now - 1800s
+    "to_time_stamp" : 1666856580 //eg: time now
 }
 ```
 
